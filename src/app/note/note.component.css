@@ -1,9 +1,17 @@
 textarea {
-    background-color: rgb(194, 229, 229);
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
+    background-color: rgb(217, 255, 255);
+    width: 95%;
+    height: 95%;
+    margin: 3px;
+    padding: 10px;
     border: 0px;
     resize: none;
+    font-family: inherit;
+    font-size: inherit;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
 }

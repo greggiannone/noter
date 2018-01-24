@@ -1,12 +1,15 @@
-<div class="home"> 
-<app-menu></app-menu> 
-  <ul class="notes-list">
-    <li>Note1</li>
-    <li>Note2</li>
-    <li>Note3</li>
+<div id="home"> 
+<app-menu (newNoteAdded)="onSelect($event)"
+          (deleteSelectedNote)="refreshNotes()"></app-menu> 
+  <ul id="notes-list">
+    <li *ngFor="let note of notes"
+    [class.selected]="note === selectedNote"
+    (click)="onSelect(note)">
+      {{note.title}}
+    </li>
   </ul>
-<app-note></app-note>
-<div class="footer">
+<app-note [note]="selectedNote"></app-note>
+<div id="footer">
   <p>This amazing app was made by Greg Giannone</p>
 </div>
 </div>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NotesService } from '../notes.service';
+import { Note } from '../note';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  @Output() newNoteAdded = new EventEmitter;
+  @Output() deleteSelectedNote = new EventEmitter;
+
+  constructor(private notesService: NotesService) { }
 
   ngOnInit() {
   }
 
+  createNote()
+  {
+    let newNote = this.notesService.createNote();
+    this.newNoteAdded.emit(newNote);
+  }
+
+  deleteNote()
+  {
+    this.notesService.deleteSelectedNote();
+    this.deleteSelectedNote.emit();
+  }
+
+  renameNote()
+  {
+
+  }
+
+  saveNote()
+  {
+
+  }
 }

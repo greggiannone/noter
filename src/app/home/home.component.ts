@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Note } from '../note'
+import { NotesService } from '../notes.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  selectedNote: Note;
+  notes: Note[];
 
-  ngOnInit() {
+  constructor(private notesService: NotesService) { }
+
+  ngOnInit() 
+  {
+    this.notes = this.notesService.getNotes();
+    this.selectedNote = this.notesService.notes[1];
   }
 
+  onSelect(note: Note)
+  {
+    this.selectedNote = note;
+    this.notesService.setSelectedNote(note);
+  }
+
+  refreshNotes()
+  {
+    this.selectedNote = this.notesService.getSelectedNote();
+  }
 }

@@ -1,7 +1,27 @@
-p
+#menu
 {
-    background-color: teal;
-    height: 5%;
+    background-color: rgb(2, 151, 238);
     margin: 0px;
     padding: 0px;
+    height: 35px;
+    list-style-type: none;
+}
+
+#menu li
+{
+    display: inline;
+    border: 0px;
+    border-left: 2px;
+    border-color: rgb(33, 59, 133);
+    border-style: solid;
+    text-align: center;
+    padding: 10px;
+    margin: 0px;
+    line-height: 30px;
+}
+
+#menu li:hover
+{
+    background-color: rgb(69, 174, 235);
+    cursor: pointer;
 }

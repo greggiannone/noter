@@ -1,46 +1,60 @@
-.home
+#home
 {
-    background-color: tan;
+    background-color: rgb(198, 255, 233);
     height: 100%;
 }
 
 app-menu
 {
     width: 100%;
+    height: 5%;
 }
 
 app-note
 {
-    width: 90%;
+    width: 89%;
     height: 90%;
     float: right;
 }
 
-.notes-list
+#notes-list
 {
     width: 10%;
     height: 90%;
     float: left;
     list-style-type: none;
-    margin: 0px;
+    margin: 3px;
     padding: 0px;
+    background: rgb(88, 224, 224);
 }
 
-.notes-list li
+#notes-list li
 {
     text-align: center;
     padding: 10px;
-    background: rgb(153, 255, 255);
+    background: rgb(135, 240, 240);
+    cursor: pointer;
 }
 
-.notes-list li:hover
+#notes-list li:hover
 {
-    background: rgb(190, 255, 255);
+    background: rgb(221, 252, 252);
 }
 
-.footer
+#notes-list li.selected:hover
+{
+    background: rgb(221, 252, 252);
+}
+
+#footer
 {
     width: 100%;
     height: 5%;
     float: left;
+}
+
+#notes-list li.selected
+{
+    background: rgb(190, 255, 255);
+    font-weight: bold;
 }
