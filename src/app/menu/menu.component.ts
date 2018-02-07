@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
 
   @Output() newNoteAdded = new EventEmitter;
   @Output() deleteSelectedNote = new EventEmitter;
+  @Output() renameSelectedNote = new EventEmitter;
 
   constructor(private notesService: NotesService) { }
 
@@ -31,7 +32,7 @@ export class MenuComponent implements OnInit {
 
   renameNote()
   {
-
+    this.renameSelectedNote.emit();
   }
 
   saveNote()

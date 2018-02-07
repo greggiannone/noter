@@ -9,13 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { NoteComponent } from './note/note.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotesService } from './notes.service';
+import { SelectOnShowDirective } from './select-on-show.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NoteComponent,
-    MenuComponent
+    MenuComponent,
+    SelectOnShowDirective
   ],
   imports: [
     BrowserModule,

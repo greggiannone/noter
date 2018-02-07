@@ -10,6 +10,7 @@ import { NotesService } from '../notes.service';
 export class HomeComponent implements OnInit {
 
   selectedNote: Note;
+  renamingNote: boolean;
   notes: Note[];
 
   constructor(private notesService: NotesService) { }
@@ -22,12 +23,31 @@ export class HomeComponent implements OnInit {
 
   onSelect(note: Note)
   {
-    this.selectedNote = note;
+    this.setSelectedNote(note);
     this.notesService.setSelectedNote(note);
   }
 
   refreshNotes()
   {
-    this.selectedNote = this.notesService.getSelectedNote();
+    this.setSelectedNote(this.notesService.getSelectedNote());
+  }
+
+  renameNote()
+  {
+    this.renamingNote = true;
+  }
+
+  onEnter()
+  {
+    this.renamingNote = false;
+  }
+  
+  private setSelectedNote(note: Note)
+  {
+    if (note != this.selectedNote)
+    {
+      this.renamingNote = false;
+      this.selectedNote = note;
+    }
   }
 }
