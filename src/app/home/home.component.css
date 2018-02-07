@@ -1,29 +1,50 @@
 #home
 {
     background-color: rgb(198, 255, 233);
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
 
-app-menu
+#notes
 {
-    width: 100%;
-    height: 5%;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
 }
 
 app-note
 {
-    height: 90%;
-    float: right;
+    flex: 1;
+    position: relative;
+    z-index: 5000;
 }
 
 #notes-list
 {
-    height: 90%;
-    float: left;
     list-style-type: none;
-    margin: 0px 0px 0px 10px;
+    margin: 0px;
     padding: 0px;
-    background: rgb(88, 224, 224);
+    background: rgb(76, 214, 214);
+    width: 225px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+#notes-list::-webkit-scrollbar
+{
+    width: 10px;
+}
+
+#notes-list::-webkit-scrollbar-thumb 
+{
+    background: #888; 
+}
+
+#notes-list::-webkit-scrollbar-track
+{
+    background: #00000000;
+    border: 0px;
 }
 
 #notes-list li
@@ -33,31 +54,24 @@ app-note
     background: rgb(135, 240, 240);
     cursor: pointer;
     user-select: none;
+    white-space: nowrap;
 }
 
 #notes-list li:hover
 {
-    background: rgb(221, 252, 252);
+    background: rgb(247, 248, 248);
 }
 
 #notes-list li.selected:hover
 {
-    background: rgb(221, 252, 252);
-}
-
-#footer
-{
-    width: 100%;
-    height: 5%;
-    float: left;
+    background: rgb(247, 248, 248);
 }
 
 #notes-list li.selected
 {
-    background: rgb(217, 255, 255);
+    background: rgb(199, 255, 255);
     font-weight: bold;
-    box-shadow: -2px 4px 2px 0px #14667a;
-    z-index: 5000;
+    box-shadow: 0px 4px 5px 0px #00000088;
     position: relative;
 }
 
@@ -70,6 +84,9 @@ app-note
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    width: 100%;
     height: 25px;
+    background-color: rgb(199, 255, 255);
+    border: 0px;
+    text-align: center;
+    width: 100%;
 }

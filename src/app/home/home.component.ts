@@ -12,13 +12,18 @@ export class HomeComponent implements OnInit {
   selectedNote: Note;
   renamingNote: boolean;
   notes: Note[];
+  oldName: string;
 
   constructor(private notesService: NotesService) { }
 
   ngOnInit() 
   {
     this.notes = this.notesService.getNotes();
-    this.selectedNote = this.notesService.notes[1];
+    this.selectedNote = null;
+    if (this.notes.length > 0)
+    {
+      this.selectedNote = this.notes[0];
+    }
   }
 
   onSelect(note: Note)
@@ -34,20 +39,43 @@ export class HomeComponent implements OnInit {
 
   renameNote()
   {
+    if (this.selectedNote == null)
+    {
+      return;
+    }
+
+    this.oldName = this.selectedNote.title;
     this.renamingNote = true;
   }
 
   onEnter()
   {
-    this.renamingNote = false;
+    this.stopRenaming();
   }
   
   private setSelectedNote(note: Note)
   {
     if (note != this.selectedNote)
     {
-      this.renamingNote = false;
+      this.stopRenaming();
       this.selectedNote = note;
     }
+  }
+
+  private stopRenaming()
+  {
+    if (!this.renamingNote)
+    {
+      return;
+    }
+
+    if (this.selectedNote.title == '')
+    {
+      this.selectedNote.title = this.oldName;
+    }
+
+    this.oldName = '';
+    this.renamingNote = false;
+
   }
 }

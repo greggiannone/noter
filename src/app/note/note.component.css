@@ -1,7 +1,7 @@
 textarea {
-    background-color: rgb(217, 255, 255);
-    width: 95%;
-    height: 95%;
+    background-color: rgb(199, 255, 255);
+    width: 100%;
+    height: 100%;
     margin: 0px;
     padding: 10px;
     border: 0px;
@@ -13,5 +13,5 @@ textarea {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-
+    box-sizing: border-box;
 }

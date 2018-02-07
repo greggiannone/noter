@@ -9,14 +9,34 @@ export class NotesService {
 
   constructor() { 
     this.notes = [
-      { id: 1, title: 'Amazing note', text: 'This is such an amazing note!!!!' },
-      { id: 2, title: 'Garbage note', text: 'This is a garbage note' },
-      { id: 3, title: 'Note', text: 'This sure is a note' },
-      { id: 4, title: 'Final note', text: 'My final note lies here' },
+      new Note(++this.currId, 'One Note', ''),
+      new Note(++this.currId, 'Two Note', ''),
+      new Note(++this.currId, 'Red Note', ''),
+      new Note(++this.currId, 'Blue Note', ''),
+      new Note(++this.currId, 'One Note', ''),
+      new Note(++this.currId, 'Two Note', ''),
+      new Note(++this.currId, 'Red Note', ''),
+      new Note(++this.currId, 'Blue Note', ''),
+      new Note(++this.currId, 'One Note', ''),
+      new Note(++this.currId, 'Two Note', ''),
+      new Note(++this.currId, 'Red Note', ''),
+      new Note(++this.currId, 'Blue Note', ''),
+      new Note(++this.currId, 'One Note', ''),
+      new Note(++this.currId, 'Two Note', ''),
+      new Note(++this.currId, 'Red Note', ''),
+      new Note(++this.currId, 'Blue Note', ''),
+      new Note(++this.currId, 'One Note', ''),
+      new Note(++this.currId, 'Two Note', ''),
+      new Note(++this.currId, 'Red Note', ''),
+      new Note(++this.currId, 'Blue Note', ''),
+      new Note(++this.currId, 'One Note', ''),
+      new Note(++this.currId, 'Two Note', ''),
+      new Note(++this.currId, 'Red Note', ''),
+      new Note(++this.currId, 'Blue Note', ''),
     ];
 
     this.selectedNote = this.notes[0];
-    this.currId = 4;
+    this.currId = this.notes.length;
   }
   
   getNotes()
@@ -36,8 +56,9 @@ export class NotesService {
 
   createNote(): Note
   {
-    this.notes.push({ id: ++this.currId, title: 'New Note', text: ''});
-    return this.notes[this.currId - 1];
+    this.notes.push(new Note(++this.currId, 'New Note', ''));
+    console.log(this.currId);
+    return this.notes[this.notes.length - 1];
   }
 
   deleteSelectedNote()

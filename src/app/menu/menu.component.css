@@ -3,20 +3,21 @@
     background-color: rgb(2, 151, 238);
     margin: 0px;
     padding: 0px;
-    height: 35px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     list-style-type: none;
 }
 
 #menu li
 {
     display: inline;
-    border: 0px;
-    border-style: solid;
-    text-align: center;
-    padding: 10px;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-right: 80px;
     margin: 0px;
-    line-height: 30px;
     user-select: none;
+    font-weight: bold;
 }
 
 #menu li:hover
