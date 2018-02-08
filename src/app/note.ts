@@ -1,26 +1,38 @@
+import { NoteData } from './notes.service'
+
 export class Note {
     static readonly MaxLength = 20;
-    title: string;
-    text: string;
-    readonly id: number;
+    noteData: NoteData;
+    editingText: string;
+    id: number;
 
-    constructor(id: number, title: string, text: string)
+    constructor(noteData: NoteData)
     {
-        this.id = id;
-        this.title = title;
-        this.text = text;
+        this.noteData = noteData;
+        this.editingText = this.noteData.text;
     }
 
     getDisplayTitle() : string
     {
-        if (this.title.length < Note.MaxLength)
+        let asterisk = this.isDirty() ? '* ' : '';
+        if (this.noteData.title.length < Note.MaxLength)
         {
-            return this.title;
+            return asterisk + this.noteData.title;
         }
         else
         {
-            return this.title.substring(0, Note.MaxLength) + '...';
+            return asterisk + this.noteData.title.substring(0, Note.MaxLength) + '...';
         }
 
+    }
+
+    isDirty(): boolean
+    {
+        return this.editingText != this.noteData.text;
+    }
+
+    applyChanges()
+    {
+        this.noteData.text = this.editingText;
     }
 }

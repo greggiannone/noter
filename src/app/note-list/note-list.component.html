@@ -1,0 +1,12 @@
+<ul id="notes-list">
+  <li *ngFor="let note of notes"
+  [class.selected]="note === selectedNote"
+  (click)="onSelect(note)">
+    <p *ngIf="!renamingNote || note !== selectedNote">{{note.getDisplayTitle()}}</p>
+    <input type="text" 
+          *ngIf="renamingNote && note === selectedNote" 
+          [(ngModel)]="note.noteData.title"
+          (keydown.enter)="onEnter()"
+          appSelectOnShow>
+  </li>
+</ul>

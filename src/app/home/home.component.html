@@ -1,21 +1,15 @@
 <div id="home"> 
-  <app-menu (newNoteAdded)="onSelect($event)"
-            (deleteSelectedNote)="refreshNotes()"
-            (renameSelectedNote)="renameNote()"></app-menu> 
+  <app-menu (newNoteAdded)="addNote()"
+            (deleteSelectedNote)="deleteNote()"
+            (renameSelectedNote)="renameNote()"
+            (saveSelectedNote)="saveNote()"></app-menu> 
 
   <div id="notes">
-    <ul id="notes-list">
-      <li *ngFor="let note of notes"
-      [class.selected]="note === selectedNote"
-      (click)="onSelect(note)">
-        <p *ngIf="!renamingNote || note !== selectedNote">{{note.getDisplayTitle()}}</p>
-        <input type="text" 
-              *ngIf="renamingNote && note === selectedNote" 
-              [(ngModel)]="note.title"
-              (keydown.enter)="onEnter()"
-              appSelectOnShow>
-      </li>
-    </ul>
+    <app-note-list [notes]="notes"
+               [toggleRename]="toggleRename"
+               [selectedNote]="selectedNote"
+               (onSelectionChanged)="selectionChanged($event)"
+               (onRenameComplete)="onRenameComplete()"></app-note-list>
 
     <app-note [note]="selectedNote"
               *ngIf="selectedNote != null"></app-note>

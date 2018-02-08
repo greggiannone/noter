@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../note'
 import { NotesService } from '../notes.service';
+import { NoteData } from '../notes.service';
 
 @Component({
   selector: 'app-home',
@@ -9,73 +10,73 @@ import { NotesService } from '../notes.service';
 })
 export class HomeComponent implements OnInit {
 
-  selectedNote: Note;
-  renamingNote: boolean;
   notes: Note[];
-  oldName: string;
+  selectedNote: Note;
+  toggleRename: boolean;
 
-  constructor(private notesService: NotesService) { }
+  constructor(private notesService: NotesService) 
+  { 
+    this.notes = [];
+  }
 
   ngOnInit() 
   {
-    this.notes = this.notesService.getNotes();
-    this.selectedNote = null;
+    this.refreshNotes()
     if (this.notes.length > 0)
     {
       this.selectedNote = this.notes[0];
     }
   }
 
-  onSelect(note: Note)
-  {
-    this.setSelectedNote(note);
-    this.notesService.setSelectedNote(note);
-  }
-
+  // Gets all the notes from the server then sets a note
   refreshNotes()
   {
-    this.setSelectedNote(this.notesService.getSelectedNote());
+
+    // Create the list of notes by converting the note datas to notes
+    this.notesService.getNotes().subscribe(noteDatas =>
+      {
+        this.notes.splice(0, this.notes.length);
+        for (let noteData of noteDatas)
+        {
+          this.notes.push(new Note(noteData));
+        }
+      });
+  }
+  selectionChanged(note: Note)
+  {
+    this.selectedNote = note;
+  }
+
+  addNote()
+  {
+    let newNote = new Note({ title: 'New Note' } as NoteData);
+    this.notes.push(newNote);
+    this.selectionChanged(newNote);
+    this.notesService.createNote('New Note').subscribe(noteData => newNote.noteData.id = noteData.id);
+  }
+
+  deleteNote()
+  {
+    // delete selected note
   }
 
   renameNote()
+  {
+    this.toggleRename = true;
+  }
+  
+  saveNote()
   {
     if (this.selectedNote == null)
     {
       return;
     }
 
-    this.oldName = this.selectedNote.title;
-    this.renamingNote = true;
-  }
-
-  onEnter()
-  {
-    this.stopRenaming();
+    this.selectedNote.applyChanges();
   }
   
-  private setSelectedNote(note: Note)
+  onRenameComplete()
   {
-    if (note != this.selectedNote)
-    {
-      this.stopRenaming();
-      this.selectedNote = note;
-    }
-  }
-
-  private stopRenaming()
-  {
-    if (!this.renamingNote)
-    {
-      return;
-    }
-
-    if (this.selectedNote.title == '')
-    {
-      this.selectedNote.title = this.oldName;
-    }
-
-    this.oldName = '';
-    this.renamingNote = false;
-
+    this.toggleRename = false;
   }
 }

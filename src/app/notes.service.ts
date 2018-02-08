@@ -1,80 +1,59 @@
-import { Injectable } from '@angular/core';
+import { Injectable,  } from '@angular/core';
 import { Note } from './note';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
+import { catchError, tap } from 'rxjs/operators';
+import 'rxjs/add/operator/map'
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable()
 export class NotesService {
 
-  notes: Note[];
-  selectedNote: Note;
-  currId: number;
+  private notesUrl = 'api/notes';
 
-  constructor() { 
-    this.notes = [
-      new Note(++this.currId, 'One Note', ''),
-      new Note(++this.currId, 'Two Note', ''),
-      new Note(++this.currId, 'Red Note', ''),
-      new Note(++this.currId, 'Blue Note', ''),
-      new Note(++this.currId, 'One Note', ''),
-      new Note(++this.currId, 'Two Note', ''),
-      new Note(++this.currId, 'Red Note', ''),
-      new Note(++this.currId, 'Blue Note', ''),
-      new Note(++this.currId, 'One Note', ''),
-      new Note(++this.currId, 'Two Note', ''),
-      new Note(++this.currId, 'Red Note', ''),
-      new Note(++this.currId, 'Blue Note', ''),
-      new Note(++this.currId, 'One Note', ''),
-      new Note(++this.currId, 'Two Note', ''),
-      new Note(++this.currId, 'Red Note', ''),
-      new Note(++this.currId, 'Blue Note', ''),
-      new Note(++this.currId, 'One Note', ''),
-      new Note(++this.currId, 'Two Note', ''),
-      new Note(++this.currId, 'Red Note', ''),
-      new Note(++this.currId, 'Blue Note', ''),
-      new Note(++this.currId, 'One Note', ''),
-      new Note(++this.currId, 'Two Note', ''),
-      new Note(++this.currId, 'Red Note', ''),
-      new Note(++this.currId, 'Blue Note', ''),
-    ];
-
-    this.selectedNote = this.notes[0];
-    this.currId = this.notes.length;
+  constructor(private http: HttpClient) { 
+ 
   }
   
-  getNotes()
+  getNotes(): Observable<NoteData[]>
   {
-    return this.notes;
+    return this.http.get<NoteData[]>(this.notesUrl);
   }
 
-  getSelectedNote()
+  createNote(title: string) : Observable<NoteData>
   {
-    return this.selectedNote;
-  }
-
-  setSelectedNote(note: Note)
-  {
-    this.selectedNote = note;
-  }
-
-  createNote(): Note
-  {
-    this.notes.push(new Note(++this.currId, 'New Note', ''));
-    console.log(this.currId);
-    return this.notes[this.notes.length - 1];
+    let data = { title: title, text: '' } as NoteData;
+    return this.http.post<NoteData>(this.notesUrl, data, httpOptions);
   }
 
   deleteSelectedNote()
   {
-    var index = this.notes.indexOf(this.selectedNote);
-    if (index > -1)
-    {
-      this.notes.splice(index, 1);
-    }
-    if (index < this.notes.length)
-    {
-      this.selectedNote = this.notes[index];
-    }
-    else
-    {
-      this.selectedNote = this.notes[index - 1];
-    }
+    // var index = this.notes.indexOf(this.selectedNote);
+    // if (index > -1)
+    // {
+    //   this.notes.splice(index, 1);
+    // }
+    // if (this.notes.length == 0)
+    // {
+    //   this.selectedNote = null;
+    // }
+    // else if (index < this.notes.length)
+    // {
+    //   this.selectedNote = this.notes[index];
+    // }
+    // else
+    // {
+    //   this.selectedNote = this.notes[index - 1];
+    // }
   }
+}
+
+export interface NoteData
+{
+  id: number;
+  title: string;
+  text: string;
 }

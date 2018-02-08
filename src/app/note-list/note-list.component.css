@@ -1,0 +1,70 @@
+#notes-list
+{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    background: rgb(76, 214, 214);
+    width: 225px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#notes-list::-webkit-scrollbar
+{
+    width: 5px;
+    background: transparent;
+}
+
+#notes-list::-webkit-scrollbar-thumb 
+{
+    background: #88888888; 
+}
+
+#notes-list::-webkit-scrollbar-track 
+{
+    background: rgb(135, 240, 240);
+}
+
+#notes-list li
+{
+    text-align: center;
+    padding: 10px;
+    background: rgb(135, 240, 240);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+#notes-list li:hover
+{
+    background: rgb(247, 248, 248);
+}
+
+#notes-list li.selected:hover
+{
+    background: rgb(247, 248, 248);
+}
+
+#notes-list li.selected
+{
+    background: rgb(199, 255, 255);
+    font-weight: bold;
+    box-shadow: 0px 4px 5px 0px #00000088;
+    position: relative;
+}
+
+#notes-list li input
+{
+    font-family: inherit;
+    font-size: inherit;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    height: 25px;
+    background-color: rgb(199, 255, 255);
+    border: 0px;
+    text-align: center;
+    width: 100%;
+}

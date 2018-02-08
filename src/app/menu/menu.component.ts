@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
   @Output() newNoteAdded = new EventEmitter;
   @Output() deleteSelectedNote = new EventEmitter;
   @Output() renameSelectedNote = new EventEmitter;
+  @Output() saveSelectedNote = new EventEmitter;
 
   constructor(private notesService: NotesService) { }
 
@@ -20,13 +21,11 @@ export class MenuComponent implements OnInit {
 
   createNote()
   {
-    let newNote = this.notesService.createNote();
-    this.newNoteAdded.emit(newNote);
+    this.newNoteAdded.emit();
   }
 
   deleteNote()
   {
-    this.notesService.deleteSelectedNote();
     this.deleteSelectedNote.emit();
   }
 
@@ -37,6 +36,6 @@ export class MenuComponent implements OnInit {
 
   saveNote()
   {
-
+    this.saveSelectedNote.emit();
   }
 }

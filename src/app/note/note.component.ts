@@ -8,7 +8,7 @@ import { Note } from '../note'
 })
 export class NoteComponent implements OnInit {
 
-  @Input() note: Note
+  @Input() note: Note;
 
   constructor() { }
 
