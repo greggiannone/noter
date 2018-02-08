@@ -27,24 +27,22 @@ app-note
     padding: 0px;
     background: rgb(76, 214, 214);
     width: 225px;
-    overflow: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 #notes-list::-webkit-scrollbar
 {
-    width: 10px;
+    width: 7px;
 }
 
 #notes-list::-webkit-scrollbar-thumb 
 {
-    background: #888; 
+    background: #88888888; 
 }
 
-#notes-list::-webkit-scrollbar-track
+#notes-list::-webkit-scrollbar-track 
 {
-    background: #00000000;
-    border: 0px;
+    background: rgb(199, 255, 255);
 }
 
 #notes-list li
