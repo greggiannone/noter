@@ -6,7 +6,7 @@
     background: rgb(76, 214, 214);
     width: 225px;
     height: 100%;
-    overflow-y: scroll;
+    overflow: auto;
 }
 
 #notes-list::-webkit-scrollbar

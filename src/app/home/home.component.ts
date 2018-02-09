@@ -57,7 +57,30 @@ export class HomeComponent implements OnInit {
 
   deleteNote()
   {
-    // delete selected note
+    if (this.selectedNote == null)
+    {
+      return;
+    }
+
+    this.notesService.deleteNote(this.selectedNote.noteData.id);
+    
+    var index = this.notes.indexOf(this.selectedNote);
+    if (index > -1)
+    {
+      this.notes.splice(index, 1);
+    }
+    if (this.notes.length == 0)
+    {
+      this.selectedNote = null;
+    }
+    else if (index < this.notes.length)
+    {
+      this.selectedNote = this.notes[index];
+    }
+    else
+    {
+      this.selectedNote = this.notes[index - 1];
+    }
   }
 
   renameNote()

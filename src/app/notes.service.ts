@@ -29,25 +29,10 @@ export class NotesService {
     return this.http.post<NoteData>(this.notesUrl, data, httpOptions);
   }
 
-  deleteSelectedNote()
+  deleteNote(id: number)
   {
-    // var index = this.notes.indexOf(this.selectedNote);
-    // if (index > -1)
-    // {
-    //   this.notes.splice(index, 1);
-    // }
-    // if (this.notes.length == 0)
-    // {
-    //   this.selectedNote = null;
-    // }
-    // else if (index < this.notes.length)
-    // {
-    //   this.selectedNote = this.notes[index];
-    // }
-    // else
-    // {
-    //   this.selectedNote = this.notes[index - 1];
-    // }
+    const url = '${this.notesUrl}/${id}';
+    return this.http.delete<Note>(url, httpOptions);
   }
 }
 
