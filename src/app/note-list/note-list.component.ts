@@ -59,6 +59,7 @@ export class NoteListComponent implements OnInit {
     this.selectedNote = note;
   }
   
+  // Sets the selected note
   private setSelectedNote(note: Note)
   {
     if (note != this.selectedNote)
